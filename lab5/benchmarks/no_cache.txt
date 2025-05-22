@@ -1,0 +1,36 @@
+Тестирование без кэша
+———————————
+1 поток
+
+Running 30s test @ http://localhost:8000/users/1
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    27.94ms    6.08ms  77.82ms   68.13%
+    Req/Sec   359.35     55.66   500.00     66.00%
+  10734 requests in 30.01s, 1.93MB read
+Requests/sec:    357.69
+Transfer/sec:     66.02KB
+-------------------
+
+5 потоков
+
+Running 30s test @ http://localhost:8000/users/1
+  5 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    27.26ms    6.11ms  62.57ms   69.65%
+    Req/Sec    73.39     12.66   121.00     57.80%
+  11006 requests in 30.02s, 1.98MB read
+Requests/sec:    366.66
+Transfer/sec:     67.67KB
+-------------------
+
+10 потоков
+
+Running 30s test @ http://localhost:8000/users/1
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    27.88ms    6.03ms  62.56ms   68.95%
+    Req/Sec    35.87      6.72    60.00     89.67%
+  10761 requests in 30.02s, 1.94MB read
+Requests/sec:    358.46
+Transfer/sec:     66.16KB

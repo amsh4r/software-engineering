@@ -1,0 +1,41 @@
+Тестирование c кэшем
+———————————
+1 поток
+
+Running 30s test @ http://localhost:8000/users/1
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     8.12ms    2.50ms  38.21ms   92.45%
+    Req/Sec     1.12k     75.13    1.27k    85.20%
+  33642 requests in 30.01s, 6.12MB read
+  Non-2xx or 3xx responses: 33642
+Requests/sec:   1120.41
+Transfer/sec:    209.50KB
+-------------------
+
+5 потоков
+
+Тестирование с кэшем (5 потоков)
+Running 30s test @ http://localhost:8000/users/1
+  5 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     8.45ms    3.12ms  45.20ms   93.78%
+    Req/Sec   215.25     19.45    265.00    83.10%
+  32289 requests in 30.00s, 5.87MB read
+  Non-2xx or 3xx responses: 32289
+Requests/sec:   1076.27
+Transfer/sec:    206.12KB
+-------------------
+
+10 потоков
+
+Тестирование с кэшем (10 потоков)
+Running 30s test @ http://localhost:8000/users/1
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     8.37ms    2.90ms  43.15ms   94.01%
+    Req/Sec   110.52     12.30    130.00    79.05%
+  32989 requests in 30.02s, 5.99MB read
+  Non-2xx or 3xx responses: 32989
+Requests/sec:   1098.91
+Transfer/sec:    208.55KB

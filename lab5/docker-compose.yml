@@ -1,0 +1,69 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: alex
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: my_user_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - arch-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - arch-network
+
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - arch-network
+
+  user_service:
+    build:
+      context: ./user_service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./user_service:/app
+    depends_on:
+      - db
+      - redis
+    networks:
+      - arch-network
+
+  goal_service:
+    build:
+      context: ./goal_service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./goal_service:/app
+    depends_on:
+      - mongo
+      - user_service
+      - redis
+    networks:
+      - arch-network
+
+networks:
+  arch-network:
+    driver: "bridge"
+    external: false
+
+volumes:
+  db_data:
+  mongo_data:
